@@ -1,11 +1,7 @@
-﻿@using QuantityOnHand.Components.Account.Shared
+﻿@using QuantityOnHand.Components.Layout
 <Router AppAssembly="typeof(Program).Assembly">
     <Found Context="routeData">
-        <AuthorizeRouteView RouteData="routeData" DefaultLayout="typeof(Layout.MainLayout)">
-            <NotAuthorized>
-                <RedirectToLogin/>
-            </NotAuthorized>
-        </AuthorizeRouteView>
+        <RouteView RouteData="routeData" DefaultLayout="typeof(MainLayout)"></RouteView>
         <FocusOnNavigate RouteData="routeData" Selector="h1"/>
     </Found>
 </Router>

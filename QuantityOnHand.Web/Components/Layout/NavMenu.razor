@@ -4,48 +4,13 @@
 
 <MudPaper Width="250px" Class="py-3" Elevation="0">
     <MudNavMenu>
-        <MudText Typo="Typo.h6" Class="px-4">QuantityOnHand.Web</MudText>
+        <MudText Typo="Typo.h6" Class="px-4">Quantity on Hand</MudText>
         <MudDivider Class="my-2"/>
 
         <MudNavLink Href="/" Match="NavLinkMatch.All">
             <MudIcon Icon="bi bi-house-door-fill-nav-menu" Class="mud-icon-size-medium"/>
             Home
         </MudNavLink>
-
-        <MudNavLink Href="hospital-items">
-            <MudIcon Icon="bi bi-list-nested-nav-menu" Class="mud-icon-size-medium"/>
-            Hospital Items
-        </MudNavLink>
-
-        <AuthorizeView>
-            <Authorized>
-                <MudNavLink Href="Account/Manage">
-                    <MudIcon Icon="bi bi-person-fill-nav-menu"
-                             Class="mud-icon-size-medium"/> @context.User.Identity?.Name
-                </MudNavLink>
-                <MudNavLink>
-                    <form action="Account/Logout" method="post" style="margin: 0;">
-                        <AntiforgeryToken/>
-                        <input type="hidden" name="ReturnUrl" value="@currentUrl"/>
-                        <button type="submit" class="nav-link btn btn-link p-0 m-0"
-                                style="color: inherit; text-align: left;">
-                            <MudIcon Icon="bi bi-arrow-bar-left-nav-menu" Class="mud-icon-size-medium"/>
-                            Logout
-                        </button>
-                    </form>
-                </MudNavLink>
-            </Authorized>
-            <NotAuthorized>
-                <MudNavLink Href="Account/Register">
-                    <MudIcon Icon="bi bi-person-nav-menu" Class="mud-icon-size-medium"/>
-                    Register
-                </MudNavLink>
-                <MudNavLink Href="Account/Login">
-                    <MudIcon Icon="bi bi-person-badge-nav-menu" Class="mud-icon-size-medium"/>
-                    Login
-                </MudNavLink>
-            </NotAuthorized>
-        </AuthorizeView>
     </MudNavMenu>
 </MudPaper>
 

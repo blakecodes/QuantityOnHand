@@ -5,6 +5,7 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{FFFB6AEC-4908-4A82-AD40-61C273462FBE}"
 	ProjectSection(SolutionItems) = preProject
 		compose.yaml = compose.yaml
+		README.md = README.md
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QuantityOnHand.Data", "QuantityOnHand.Data\QuantityOnHand.Data.csproj", "{99B8A148-C3A1-44A4-9B45-5EB3F254374D}"

@@ -1,4 +1,4 @@
-﻿@page "/hospital-items"
+﻿@page "/"
 @using MediatR
 @using QuantityOnHand.Data.Entities
 @using QuantityOnHand.Domain.HospitalItem.Queries
@@ -29,14 +29,14 @@
                                       Class="mt-0"></MudTextField>
                     </MudItem>
                     <MudItem xs="6" sm="4">
-                        <MudTextField Label="Min Quantity" T="int?" @bind-Value="query.MinQuantity"
+                        <MudTextField Label="Min Quantity" T="int?" @bind-Value="_query.MinQuantity"
                                       Placeholder="Min Quantity"
                                       Adornment="Adornment.Start"
                                       AdornmentIcon="@Icons.Material.Filled.Filter" Immediate="false"
                                       TextChanged="ApplyFilters"/>
                     </MudItem>
                     <MudItem xs="6" sm="4">
-                        <MudTextField Label="Max Quantity" T="int?" @bind-Value="query.MaxQuantity"
+                        <MudTextField Label="Max Quantity" T="int?" @bind-Value="_query.MaxQuantity"
                                       Placeholder="Max Quantity"
                                       Adornment="Adornment.Start"
                                       AdornmentIcon="@Icons.Material.Filled.Filter" Immediate="false"
@@ -45,9 +45,9 @@
                 </MudGrid>
             </ToolBarContent>
 
-            <MudDataGrid @ref="dataGrid" T="HospitalItem" ServerData="ReloadDataAsync"
+            <MudDataGrid @ref="_dataGrid" T="HospitalItem" ServerData="ReloadDataAsync"
                          PageSizeOptions="pageSizeOptions"
-                         TotalItems="TotalItems" @bind-PageSize="query.PageSize" @bind-PageIndex="currentPage">
+                         TotalItems="TotalItems" @bind-PageSize="_query.PageSize" @bind-PageIndex="_currentPage">
                 <Columns>
                     <PropertyColumn Property="x => x.ItemNo" Title="Item No"/>
                     <PropertyColumn Property="x => x.ItemDescription" Title="Description"/>
@@ -64,22 +64,20 @@
 </MudGrid>
 
 @code {
-    private MudDataGrid<HospitalItem> dataGrid;
-    private IEnumerable<HospitalItem> items;
-    private int currentPage;
-    private string searchText = string.Empty;
-    private readonly GetHospitalItemsPageQuery query = new();
-    public int TotalItems { get; set; } // For total item count
-    private int[] pageSizeOptions = new[] { 5, 10, 20, 50, 100 };
+    private MudDataGrid<HospitalItem>? _dataGrid;
+    private int _currentPage;
+    private string _searchText = string.Empty;
+    private readonly GetHospitalItemsPageQuery _query = new();
 
+    // TODO: Fix bug with current page not being updated in grid state when changing filters
     private async Task<GridData<HospitalItem>> ReloadDataAsync(GridState<HospitalItem> state)
     {
         // Apply pagination and search filters
-        query.PageNumber = state.Page + 1;
-        query.PageSize = state.PageSize;
-        query.ItemDescription = searchText;
+        _query.PageNumber = state.Page + 1;
+        _query.PageSize = state.PageSize;
+        _query.ItemDescription = _searchText;
 
-        var response = await Mediator.Send(query);
+        var response = await Mediator.Send(_query);
 
         return new GridData<HospitalItem>
         {
@@ -90,13 +88,13 @@
 
     private Task OnSearchChanged(string text)
     {
-        searchText = text;
-        return dataGrid.ReloadServerData();
+        _searchText = text;
+        return _dataGrid.ReloadServerData();
     }
 
     private Task ApplyFilters()
     {
-        return dataGrid.ReloadServerData();
+        return _dataGrid.ReloadServerData();
     }
 
 }
