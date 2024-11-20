@@ -6,6 +6,7 @@ using QuantityOnHand.Components;
 using QuantityOnHand.Components.Account;
 using QuantityOnHand.Data;
 using QuantityOnHand.Data.Entities;
+using QuantityOnHand.Data.Repositories.HospitalItems;
 using QuantityOnHand.Data.Utilities;
 using QuantityOnHand.Domain.HospitalItem.Queries;
 
@@ -43,6 +44,8 @@ builder.Services.AddSingleton<IEmailSender<ApplicationUser>, IdentityNoOpEmailSe
 builder.Services.AddMudServices();
 
 builder.Services.AddMediatR(cfg => { cfg.RegisterServicesFromAssembly(typeof(GetHospitalItemsPageQuery).Assembly); });
+
+builder.Services.AddTransient<IHospitalItemRepository, HospitalItemRepository>();
 
 var app = builder.Build();
 

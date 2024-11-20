@@ -1,6 +1,5 @@
-
-using Microsoft.EntityFrameworkCore;
 using System.Linq.Expressions;
+using Microsoft.EntityFrameworkCore;
 
 namespace QuantityOnHand.Data.Repositories;
 
@@ -27,7 +26,7 @@ public class BaseRepository<TEntity>(ApplicationDbContext context) : IBaseReposi
     /// <param name="pageNumber">The page number to retrieve. Defaults to 1.</param>
     /// <param name="pageSize">The number of items per page. Defaults to 10.</param>
     /// <returns>A list of items.</returns>
-    public async Task<IEnumerable<TEntity>> GetPageAsync(
+    public async Task<(List<TEntity> entities, int totalCount)> GetPageAsync(
         Expression<Func<TEntity, bool>>? filter = null,
         Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>>? orderBy = null,
         int pageNumber = 1,
@@ -35,18 +34,16 @@ public class BaseRepository<TEntity>(ApplicationDbContext context) : IBaseReposi
     {
         IQueryable<TEntity> query = _dbSet;
 
-        if (filter != null)
-        {
-            query = query.Where(filter);
-        }
+        if (filter != null) query = query.Where(filter);
 
-        if (orderBy != null)
-        {
-            query = orderBy(query);
-        }
+        if (orderBy != null) query = orderBy(query);
 
-        return await query.Skip((pageNumber - 1) * pageSize)
+        var totalCount = await query.CountAsync();
+
+        var entities = await query.Skip((pageNumber - 1) * pageSize)
             .Take(pageSize)
             .ToListAsync();
+
+        return (entities, totalCount);
     }
 }

@@ -6,7 +6,8 @@ namespace QuantityOnHand.Data.Repositories.HospitalItems;
 public class HospitalItemRepository(ApplicationDbContext context)
     : BaseRepository<HospitalItem>(context), IHospitalItemRepository
 {
-    public async Task<IEnumerable<HospitalItem>> GetHospitalItemsPageAsync(string? itemDescription, int? minQuantity,
+    public async Task<(List<HospitalItem> entities, int totalCount)> GetHospitalItemsPageAsync(string? itemDescription,
+        int? minQuantity,
         int? maxQuantity, int pageNumber, int pageSize)
     {
         Expression<Func<HospitalItem, bool>>? filter = item =>

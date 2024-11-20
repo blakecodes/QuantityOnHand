@@ -19,8 +19,7 @@ public interface IBaseRepository<TEntity>
     /// <param name="pageNumber">The page number to retrieve. Defaults to 1.</param>
     /// <param name="pageSize">The number of items per page. Defaults to 10.</param>
     /// <returns>A list of items.</returns>
-    Task<IEnumerable<TEntity>> GetPageAsync(
-        Expression<Func<TEntity, bool>>? filter = null,
+    Task<(List<TEntity> entities, int totalCount)> GetPageAsync(Expression<Func<TEntity, bool>>? filter = null,
         Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>>? orderBy = null,
         int pageNumber = 1,
         int pageSize = 10);

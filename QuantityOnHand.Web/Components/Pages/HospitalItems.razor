@@ -1,0 +1,102 @@
+﻿@page "/hospital-items"
+@using MediatR
+@using QuantityOnHand.Data.Entities
+@using QuantityOnHand.Domain.HospitalItem.Queries
+@inject IMediator Mediator
+
+<PageTitle>Hospital Items</PageTitle>
+
+<MudGrid>
+    <MudItem xs="12">
+        <MudText Typo="Typo.h5">Hospital Items</MudText>
+    </MudItem>
+    <MudItem xs="12">
+        <MudText Typo="Typo.subtitle1" Class="mb-2">This page shows data from an example file loaded into a SQL
+            database. Use the filters
+            below and pagination to comb through it.
+        </MudText>
+    </MudItem>
+    <MudItem xs="12">
+        <MudPaper Style="padding: 10px">
+            <ToolBarContent>
+                <MudSpacer/>
+                <MudGrid>
+                    <MudItem xs="12" sm="4">
+                        <MudTextField Label="Description Filter" T="string" ValueChanged="@(s => OnSearchChanged(s))"
+                                      Placeholder="Description filter"
+                                      Adornment="Adornment.Start" AdornmentIcon="@Icons.Material.Filled.Search"
+                                      IconSize="Size.Medium"
+                                      Class="mt-0"></MudTextField>
+                    </MudItem>
+                    <MudItem xs="6" sm="4">
+                        <MudTextField Label="Min Quantity" T="int?" @bind-Value="query.MinQuantity"
+                                      Placeholder="Min Quantity"
+                                      Adornment="Adornment.Start"
+                                      AdornmentIcon="@Icons.Material.Filled.Filter" Immediate="false"
+                                      TextChanged="ApplyFilters"/>
+                    </MudItem>
+                    <MudItem xs="6" sm="4">
+                        <MudTextField Label="Max Quantity" T="int?" @bind-Value="query.MaxQuantity"
+                                      Placeholder="Max Quantity"
+                                      Adornment="Adornment.Start"
+                                      AdornmentIcon="@Icons.Material.Filled.Filter" Immediate="false"
+                                      TextChanged="ApplyFilters"/>
+                    </MudItem>
+                </MudGrid>
+            </ToolBarContent>
+
+            <MudDataGrid @ref="dataGrid" T="HospitalItem" ServerData="ReloadDataAsync"
+                         PageSizeOptions="pageSizeOptions"
+                         TotalItems="TotalItems" @bind-PageSize="query.PageSize" @bind-PageIndex="currentPage">
+                <Columns>
+                    <PropertyColumn Property="x => x.ItemNo" Title="Item No"/>
+                    <PropertyColumn Property="x => x.ItemDescription" Title="Description"/>
+                    <PropertyColumn Property="x => x.Quantity" Title="Quantity"/>
+                    <PropertyColumn Property="x => x.Price" Title="Price"/>
+                </Columns>
+
+                <PagerContent>
+                    <MudDataGridPager T="HospitalItem"/>
+                </PagerContent>
+            </MudDataGrid>
+        </MudPaper>
+    </MudItem>
+</MudGrid>
+
+@code {
+    private MudDataGrid<HospitalItem> dataGrid;
+    private IEnumerable<HospitalItem> items;
+    private int currentPage;
+    private string searchText = string.Empty;
+    private readonly GetHospitalItemsPageQuery query = new();
+    public int TotalItems { get; set; } // For total item count
+    private int[] pageSizeOptions = new[] { 5, 10, 20, 50, 100 };
+
+    private async Task<GridData<HospitalItem>> ReloadDataAsync(GridState<HospitalItem> state)
+    {
+        // Apply pagination and search filters
+        query.PageNumber = state.Page + 1;
+        query.PageSize = state.PageSize;
+        query.ItemDescription = searchText;
+
+        var response = await Mediator.Send(query);
+
+        return new GridData<HospitalItem>
+        {
+            Items = response.Entities,
+            TotalItems = response.TotalCount
+        };
+    }
+
+    private Task OnSearchChanged(string text)
+    {
+        searchText = text;
+        return dataGrid.ReloadServerData();
+    }
+
+    private Task ApplyFilters()
+    {
+        return dataGrid.ReloadServerData();
+    }
+
+}
