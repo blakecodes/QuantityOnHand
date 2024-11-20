@@ -6,4 +6,17 @@
         <Nullable>enable</Nullable>
     </PropertyGroup>
 
+    <ItemGroup>
+      <Folder Include="HospitalItem\Commands\Handlers\" />
+      <Folder Include="HospitalItem\Commands\Validators\" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <PackageReference Include="MediatR" Version="12.4.1" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\QuantityOnHand.Data\QuantityOnHand.Data.csproj" />
+    </ItemGroup>
+
 </Project>

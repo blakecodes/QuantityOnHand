@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using QuantityOnHand.Data.Entities;
 
 namespace QuantityOnHand.Data.Utilities;
 

@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using QuantityOnHand.Data.Entities;
 
 namespace QuantityOnHand.Data;
 
