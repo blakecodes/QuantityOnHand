@@ -3,6 +3,12 @@
 The goal of this project is to demonstrate my current C# .NET development skillset. This is not a fully polished project
 and time constraints should be taken into consideration when reviewing it.
 
+#### Video Demonstration:
+https://share.cleanshot.com/lXpV1xC3
+#### Screenshot:
+
+![img.png](./readme_assets/screenshot.png)
+
 ## Project Overview
 
 The solution consists of the following core projects:
