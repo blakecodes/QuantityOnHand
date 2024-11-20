@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Identity;
 using QuantityOnHand.Data;
+using QuantityOnHand.Data.Entities;
 
 namespace QuantityOnHand.Components.Account;
 

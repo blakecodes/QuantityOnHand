@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Components.Server;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Options;
 using QuantityOnHand.Data;
+using QuantityOnHand.Data.Entities;
 
 namespace QuantityOnHand.Components.Account;
 

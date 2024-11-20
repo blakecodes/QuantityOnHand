@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using QuantityOnHand.Data;
+using QuantityOnHand.Data.Entities;
 
 namespace QuantityOnHand.Components.Account;
 

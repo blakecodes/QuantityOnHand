@@ -9,6 +9,7 @@ using Microsoft.Extensions.Primitives;
 using QuantityOnHand.Components.Account.Pages;
 using QuantityOnHand.Components.Account.Pages.Manage;
 using QuantityOnHand.Data;
+using QuantityOnHand.Data.Entities;
 
 namespace QuantityOnHand.Components.Account;
 
