@@ -5,5 +5,6 @@
 	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=c9a8d143_002D6dce_002D46e3_002Daa1c_002D9a3f180990ae/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="GetHospitalItemsPageQueryHandlerTests" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
   &lt;TestAncestor&gt;
     &lt;TestId&gt;NUnit3x::CC5E4583-FD92-4C29-9071-FFCF8740D537::net8.0::QuantityOnHand.Tests.HospitalItem.Queries.Handlers.GetHospitalItemsPageQueryHandlerTests&lt;/TestId&gt;
+    &lt;TestId&gt;NUnit3x::A75F8ED3-1706-4B89-8A19-0E97A0506A50::net8.0::QuantityOnHand.Data.Tests.Repositories.BaseRepositoriesTest&lt;/TestId&gt;
   &lt;/TestAncestor&gt;
 &lt;/SessionState&gt;</s:String></wpf:ResourceDictionary>
