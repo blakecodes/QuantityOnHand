@@ -1,0 +1,28 @@
+﻿version: '3.8'
+
+services:
+  QuantityOnHand:
+    image: quantityonhand
+    build:
+      context: .
+      dockerfile: QuantityOnHand/Dockerfile
+    ports:
+      - "5000:5000" # Map application port
+    environment:
+      - ConnectionStrings__DefaultConnection=Server=mssql;Database=QuantityOnHand;User=sa;Password=YourStrong!Password;
+    depends_on:
+      - mssql
+
+  mssql:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    container_name: sqlserver
+    ports:
+      - "1433:1433"
+    environment:
+      SA_PASSWORD: "YourStrong!Password"
+      ACCEPT_EULA: "Y"
+    volumes:
+      - sqlserver-data:/var/opt/mssql
+
+volumes:
+  sqlserver-data:
