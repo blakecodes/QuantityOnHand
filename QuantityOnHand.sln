@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QuantityOnHand.Data", "Quan
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QuantityOnHand.Domain", "QuantityOnHand.Domain\QuantityOnHand.Domain.csproj", "{BC550EA8-0EE9-402D-A402-BC6F92B32636}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QuantityOnHand.Domain.Tests", "QuantityOnHand.Domain.Tests\QuantityOnHand.Domain.Tests.csproj", "{CC5E4583-FD92-4C29-9071-FFCF8740D537}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -29,5 +31,9 @@ Global
 		{BC550EA8-0EE9-402D-A402-BC6F92B32636}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BC550EA8-0EE9-402D-A402-BC6F92B32636}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BC550EA8-0EE9-402D-A402-BC6F92B32636}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CC5E4583-FD92-4C29-9071-FFCF8740D537}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CC5E4583-FD92-4C29-9071-FFCF8740D537}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CC5E4583-FD92-4C29-9071-FFCF8740D537}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CC5E4583-FD92-4C29-9071-FFCF8740D537}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
